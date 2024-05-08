@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {return view('welcome');})->name('home');
 
@@ -17,7 +18,9 @@ Route::post('/register',[AuthController::class,'registerPost'])->name('register.
 Route::get('/register',[AuthController::class,'register'])->name('register');
 
 
-Route::get('/user', function () {return view('client.user');})->name('home.user');
+Route::get('/client',[ProductController::class,'index'])->name('home.index');
+Route::get('/client/add/{id}',[ProductController::class,'addToCart'])->name('client.add');
+Route::get('/client/cart',[ProductController::class,'getCart'])->name('client.cart');
 
 
 // ALL CLIENT ROUTES

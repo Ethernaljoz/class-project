@@ -59,7 +59,7 @@ class AuthController extends Controller
 
         if(Auth::attempt( $request->only('email','password'))){
             $request->session()->regenerate();
-            return redirect()->intended(route('home.user'));
+            return redirect()->intended(route('home.index'));
         }
         return redirect(route('login'));
 
