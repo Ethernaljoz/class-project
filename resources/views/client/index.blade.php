@@ -14,7 +14,7 @@
                     Commander
                     <span
                         class="inline-flex items-center justify-center w-4 h-4 ms-2 text-xs font-semibold text-white rounded-full">
-                        {{Session::has('cart')? Session::get('cart')->totalQty: ''}}
+                        {{Session::has('cart')? Session::get('cart')->totalQty : ''}}
                     </span>
                 </a>
 
