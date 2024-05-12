@@ -15,7 +15,7 @@ class AuthController extends Controller
 
     public function register()
     {
-        return view('auth.register');
+        return view('admin.register');
     }
 
     public function registerPost(Request $request)
@@ -38,7 +38,7 @@ class AuthController extends Controller
             return redirect(route('login'));
        }
         
-        return redirect(route('login'));
+        return redirect(route('admin.index'));
     }
 
 
@@ -59,7 +59,16 @@ class AuthController extends Controller
 
         if(Auth::attempt( $request->only('email','password'))){
             $request->session()->regenerate();
-            return redirect()->intended(route('home.index'));
+            if(  Auth::user()->role== 'user'){
+
+                return redirect()->intended(route('client.index'));
+            }
+            if( Auth::user()->role== 'manager'){
+                return redirect()->intended(route('manager.index'));
+            }
+            if( Auth::user()->role== 'admin'){
+                return redirect()->intended(route('admin.index'));
+            }
         }
         return redirect(route('login'));
 

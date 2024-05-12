@@ -159,3 +159,321 @@
   {{-- FIN DU SIDEBAR --}}
 
 </div>
+
+
+
+
+{{-- footer --}}
+
+<div class="bg-white py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <h2 class="text-center text-lg font-semibold leading-8 text-gray-900">Trusted by the world’s most innovative teams</h2>
+    <div class="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
+      <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1" src="https://tailwindui.com/img/logos/158x48/transistor-logo-gray-900.svg" alt="Transistor" width="158" height="48">
+      <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1" src="https://tailwindui.com/img/logos/158x48/reform-logo-gray-900.svg" alt="Reform" width="158" height="48">
+      <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1" src="https://tailwindui.com/img/logos/158x48/tuple-logo-gray-900.svg" alt="Tuple" width="158" height="48">
+      <img class="col-span-2 max-h-12 w-full object-contain sm:col-start-2 lg:col-span-1" src="https://tailwindui.com/img/logos/158x48/savvycal-logo-gray-900.svg" alt="SavvyCal" width="158" height="48">
+      <img class="col-span-2 col-start-2 max-h-12 w-full object-contain sm:col-start-auto lg:col-span-1" src="https://tailwindui.com/img/logos/158x48/statamic-logo-gray-900.svg" alt="Statamic" width="158" height="48">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+{{-- manager index --}}
+
+@extends('layout.global')
+
+@section('title', 'Manager')
+
+@section('content')
+<section id="home" class="py-28 px-[3%]">
+    <!-- component -->
+    <div class="flex gap-10">
+
+        @foreach ($orders as $order)
+            <div class="border shadow-md">
+                <div>
+                    <p class="py-3 px-5">{{$order->user->name}}</p>
+                    <ul class="bg-gray-50">
+                        @foreach ($order->cart->items as $item)
+                        <li class="border-b py-3 px-5 flex justify-between">
+                            <span class="text-left pr-5"> {{$item['item']['name']}} |{{$item['qty']}}Unite</span>
+                            <span>{{$item['price']}}CFA</span>
+                        </li>
+                        @endforeach
+
+                    </ul>
+                </div>
+                <div class="py-4 px-5">
+                    <p class="text-lg text-end">Prix Total: <span class="text-xl font-bold">{{$order->cart->totalPrice}}CFA</span></p>
+                </div>
+            </div>
+    
+            {{-- @foreach ($order->cart->items as $item)
+                @if ($item['item']['servir']==true)
+                    <a href="#" class="h-44 w-40 bg-gray-300 p-4 rounded-md">
+                        <p class="text-2xl font-semibold">Commande</p>
+                        <p class="text-2xl font-semibold">de la table</p>
+                        <h2 class="text-center text-4xl pt-3 font-extrabold">{{$order->user->id}}</h2>
+                
+                    </a>
+                    @else
+                    <h1>Nada</h1>
+                @endif
+            @endforeach --}}
+                
+        @endforeach
+    </div>
+    
+    {{-- <a href="#" class="h-44 w-40 bg-gray-300 p-4 rounded-md">
+        <p class="text-2xl font-semibold">Commande </p>
+        <p class="text-2xl font-semibold">de la table</p>
+        <h2 class="text-center text-4xl pt-3 font-extrabold">{{$order->user->id}}</h2>
+
+    </a> --}}
+
+
+
+</section>
+
+
+
+@endsection
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{-- manager manager --}}
+
+
+
+@extends('layout.global')
+
+@section('title','home')
+
+@section('content')
+
+@foreach ($orders as $order)
+<ul>
+    @foreach ($order->cart->items as $item)
+        <li>{{ $item['item']['name'] }}</li>
+        <li>{{ $item-> }}</li>
+    @endforeach
+</ul>
+<h1>{{$order->user->id}}</h1>
+@endforeach
+
+<section id="home" class="py-28 px-[3%]">
+
+
+    <div class="pointer-events-auto h-screen w-screen max-w-xl mx-auto">
+        <div class="flex h-full flex-col bg-white shadow-xl">
+            <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
+                <div class="flex items-start justify-between">
+                    <div class="ml-3 flex h-7 items-center">
+                        <a href="{{route('client.index')}}"
+                            class="relative -m-2 p-2 text-lg font-bold text-indigo-600 hover:text-indigo-700">
+
+                            &larr;retour
+                        </a>
+                    </div>
+                    <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">Vos commandes
+                    </h2>
+                </div>
+
+                <div class="mt-8">
+                    <div class="flow-root">
+                      
+                        <div class="flex gap-10">
+
+                            @foreach ($orders as $order)
+                                <div class="border shadow-md">
+                                    <div>
+                                        <p class="py-3 px-5">{{$order->user->name}}</p>
+                                        <ul class="bg-gray-50">
+                                            @foreach ($order->cart->items as $item)
+                                            <li class="border-b py-3 px-5 flex justify-between">
+                                                <span> {{$item['item']['name']}} || {{$item['qty']}}Unite</span>
+                                                <span>{{$item['price']}}CFA</span>
+                                            </li>
+                                            @endforeach
+                    
+                                        </ul>
+                                    </div>
+                                    <div class="py-4 px-5">
+                                        <p class="text-lg text-end">total price:{{$order->cart->totalPrice}}</p>
+                                    </div>
+                                </div>
+                        
+                                {{-- @foreach ($order->cart->items as $item)
+                                    @if ($item['item']['servir']==true)
+                                        <a href="#" class="h-44 w-40 bg-gray-300 p-4 rounded-md">
+                                            <p class="text-2xl font-semibold">Commande</p>
+                                            <p class="text-2xl font-semibold">de la table</p>
+                                            <h2 class="text-center text-4xl pt-3 font-extrabold">{{$order->user->id}}</h2>
+                                    
+                                        </a>
+                                        @else
+                                        <h1>Nada</h1>
+                                    @endif
+                                @endforeach --}}
+                                    
+                            @endforeach
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+            
+
+            </div>
+        </div>
+    </div>
+
+    <!-- component -->
+    <div class="flex gap-10">
+
+        @foreach ($orders as $order)
+            <div class="border shadow-md">
+                <div>
+                    <p class="py-3 px-5">{{$order->user->name}}</p>
+                    <ul class="bg-gray-50">
+                        @foreach ($order->cart->items as $item)
+                        <li class="border-b py-3 px-5 flex justify-between">
+                            <span> {{$item['item']['name']}} || {{$item['qty']}}Unite</span>
+                            <span>{{$item['price']}}CFA</span>
+                        </li>
+                        @endforeach
+
+                    </ul>
+                </div>
+                <div class="py-4 px-5">
+                    <p class="text-lg text-end">total price:{{$order->cart->totalPrice}}</p>
+                </div>
+            </div>
+    
+            {{-- @foreach ($order->cart->items as $item)
+                @if ($item['item']['servir']==true)
+                    <a href="#" class="h-44 w-40 bg-gray-300 p-4 rounded-md">
+                        <p class="text-2xl font-semibold">Commande</p>
+                        <p class="text-2xl font-semibold">de la table</p>
+                        <h2 class="text-center text-4xl pt-3 font-extrabold">{{$order->user->id}}</h2>
+                
+                    </a>
+                    @else
+                    <h1>Nada</h1>
+                @endif
+            @endforeach --}}
+                
+        @endforeach
+    </div>
+    
+    {{-- <a href="#" class="h-44 w-40 bg-gray-300 p-4 rounded-md">
+        <p class="text-2xl font-semibold">Commande </p>
+        <p class="text-2xl font-semibold">de la table</p>
+        <h2 class="text-center text-4xl pt-3 font-extrabold">{{$order->user->id}}</h2>
+
+    </a> --}}
+
+
+
+</section>
+
+
+
+
+
+
+{{-- index finish --}}
+
+@extends('layout.global')
+
+@section('title', 'Manager')
+
+@section('content')
+    <section id="home" class="py-28 px-[3%]">
+        <div class="pointer-events-auto h-screen w-screen max-w-xl mx-auto">
+            <div class="flex h-full flex-col bg-white shadow-xl">
+                <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
+                    <div class="flex items-start justify-between">
+                        <div class="ml-3 flex h-7 items-center">
+                            <a href="{{ route('client.index') }}"
+                                class="relative -m-2 p-2 text-lg font-bold text-indigo-600 hover:text-indigo-700">
+
+                                &larr;retour
+                            </a>
+                        </div>
+                        <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">Vos commandes
+                        </h2>
+                    </div>
+
+                    <div class="mt-8">
+                        <div class="flow-root">
+
+                            <div class="flex flex-col gap-10">
+
+                                @foreach ($orders as $order)
+                                    <div class="border shadow-md">
+                                        <div>
+                                            <p class="py-3 px-5">{{ $order->user->name }}</p>
+                                            @foreach ($order->cart->items as $item)
+                                                <ul class="bg-gray-50">
+                                                    <li class="border-b py-3 px-5 flex justify-between">
+                                                        <span> {{ $item['item']['name'] }} ||
+                                                            {{ $item['qty'] }}Unite</span>
+                                                        <span>{{ $item['price'] }}CFA</span>
+                                                    </li>
+                                                </ul>
+                                                @endforeach
+                                                
+                                                @foreach ($order->cart->items as $item)
+                                                <p class="text-2xl font-semibold bg-slate-500">
+                                                    {{ $item['item']['servir']==false ? 'pas servi' :'deja servi'}}
+                                                </p>
+
+                                            @endforeach
+
+                                        </div>
+                                        <div class="py-4 px-5">
+                                            <p class="text-lg text-end">Prix Total: <span
+                                                    class="text-xl font-bold">{{ $order->cart->totalPrice }}CFA</span></p>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+        </div>
+
+
+    </section>
+
+
+
+@endsection
+
+      

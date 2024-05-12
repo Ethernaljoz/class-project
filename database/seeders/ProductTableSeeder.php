@@ -20,6 +20,13 @@ class ProductTableSeeder extends Seeder
             'price'=>500
         ]);
         $product->save();
+
+        $product = new Product([
+            'imageUrl'=>'images/world_cola.png',
+            'name'=>'World Cola',
+            'price'=>500
+        ]);
+        $product->save();
         
         $product = new Product([
             'imageUrl'=>'images/chap_cocktail.png',
