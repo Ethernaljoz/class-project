@@ -4,22 +4,20 @@
 
 @section('content')
 
-@foreach ($orders as $order)
+{{-- @foreach ($orders as $order)
 <ul>
     @foreach ($order->cart->items as $item)
         <li>{{ $item['item']['name'] }}</li>
-        <li>{{ $item-> }}</li>
+        
     @endforeach
 </ul>
 <h1>{{$order->user->id}}</h1>
-@endforeach
+@endforeach --}}
 
 <section id="home" class="py-28 px-[3%]">
 
 
-    <div class="pointer-events-auto h-screen w-screen max-w-xl mx-auto">
-        <div class="flex h-full flex-col bg-white shadow-xl">
-            <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
+    
                 <div class="flex items-start justify-between">
                     <div class="ml-3 flex h-7 items-center">
                         <a href="{{route('client.index')}}"
@@ -44,8 +42,8 @@
                                         @foreach ($order->cart->items as $item)
                                         <ul class="bg-gray-50">
                                             <li class="border-b py-3 px-5 flex justify-between">
-                                                <span> {{$item['item']['name']}} || {{$item['qty']}}Unite</span>
-                                                <span>{{$item['price']}}CFA</span>
+                                                <span> {{$item['item']['name']}} || {{$item['qty']}} Unite</span>
+                                                <span>{{$item['price']}} CFA</span>
                                             </li>
                                         </ul>
                                         <p class="text-2xl font-semibold bg-slate-500">{{$item['item']['servir']==true}}</p>
@@ -84,7 +82,7 @@
     </div>
 
     <!-- component -->
-    <div class="flex gap-10">
+    {{-- <div class="flex gap-10">
 
         @foreach ($orders as $order)
             <div class="border shadow-md">
@@ -103,7 +101,7 @@
                 <div class="py-4 px-5">
                     <p class="text-lg text-end">total price:{{$order->cart->totalPrice}}</p>
                 </div>
-            </div>
+            </div> --}}
     
             {{-- @foreach ($order->cart->items as $item)
                 @if ($item['item']['servir']==true)
@@ -118,7 +116,7 @@
                 @endif
             @endforeach --}}
                 
-        @endforeach
+        {{-- @endforeach --}}
     </div>
     
     {{-- <a href="#" class="h-44 w-40 bg-gray-300 p-4 rounded-md">

@@ -9,7 +9,7 @@
 <div class="text-gray-900 bg-gray-200">
     <div class="p-4 flex">
         <h1 class="text-3xl">
-            Users
+            Utilisateurs
         </h1>
     </div>
     <div class="px-3 py-4 flex justify-center">
@@ -17,15 +17,15 @@
             <tbody>
                 
                 <tr class="border-b">
-                    <th class="text-left p-3 px-5">Table</th>
-                    <th class="text-left p-3 px-5">Name</th>
+                   
+                    <th class="text-left p-3 px-5">Nom</th>
                     <th class="text-left p-3 px-5">Email</th>
                     <th class="text-left p-3 px-5">Role</th>
                     <th></th>
                 </tr>
                 @foreach ($users as $user)
                 <tr class="border-b hover:bg-gray-200 bg-gray-50">
-                    <td class="p-3 px-5"></td>
+                    
                     <td class="p-3 px-5">{{$user->name}}</td>
                     <td class="p-3 px-5">{{$user->email}}</td>
                     <td class="p-3 px-5"> {{$user->role}}</td>

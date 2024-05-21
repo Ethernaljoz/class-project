@@ -44,8 +44,8 @@
                                             <div class="flex gap-4">
                                                 <a href="{{route( 'client.reduceByOne',['id'=>$product['item']['id']] )}}"
                                                 class="flex items-center justify-center rounded-sm border border-transparent bg-indigo-600 px-4 py-1 text-base font-medium text-white shadow-sm hover:bg-indigo-700">Retirer -1</a>
-                                                <button type="button"
-                                                class="flex items-center justify-center rounded-sm border border-transparent bg-indigo-600 px-4 py-1 text-base font-medium text-white shadow-sm hover:bg-indigo-700">Ajouter +1</button>
+                                                <a href="{{route( 'client.addByOne',['id'=>$product['item']['id']] )}}"
+                                                class="flex items-center justify-center rounded-sm border border-transparent bg-indigo-600 px-4 py-1 text-base font-medium text-white shadow-sm hover:bg-indigo-700">Ajouter +1</a>
                                             </div>
                                         </div>
                                     </div>
@@ -70,7 +70,7 @@
                         <form class="w-full" method="POST" action="{{route('client.order')}}">
                             @csrf
                             <button type="submit"
-                                class="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">Commander</button>
+                                class="w-full flex  items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">Commander</button>
                         </form>
                     </div>
 

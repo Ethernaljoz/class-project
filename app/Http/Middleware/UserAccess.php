@@ -21,7 +21,7 @@ class UserAccess
             return $next($request);
         }
 
-        return response()->json(["tu n as pas la permission requise"]);
+        return redirect(route('error'));
 
         // if(!empty(Auth::check())){
         //     return $next($request);

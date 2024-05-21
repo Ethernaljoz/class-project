@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call(ProductTableSeeder::class);
+        $this->call(UserTableSeeder::class);
 
         // php artisan db:seed pour seed dans la base de donnée
     }

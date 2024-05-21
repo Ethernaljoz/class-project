@@ -25,7 +25,8 @@ class ProductController extends Controller
         $cart->add($product, $product->id);
 
         $request->session()->put('cart',$cart);
-        return redirect(route('client.index'));
+        return redirect()->back();
+        // return redirect(route('client.index'));
     }
 
     public function getCart(){
@@ -68,6 +69,22 @@ class ProductController extends Controller
             Session::forget('cart');
 
         }
+        
+        return redirect()->route('client.cart');
+    }
+
+    public function getAddByOne($id){
+        $oldCart = Session::has('cart')? Session::get('cart'): null;
+        $cart = new Cart($oldCart);
+        $cart->addByOne($id);
+        Session::put('cart',$cart);
+        // if(count($cart->items) > 0){
+
+        //     Session::put('cart',$cart);
+        // }else{
+        //     Session::forget('cart');
+
+        // }
         
         return redirect()->route('client.cart');
     }

@@ -29,18 +29,15 @@ class AuthController extends Controller
        $data['name'] = $request->name;
        $data['email'] = $request->email;
        $data['password'] = Hash::make($request->password);
-    
-
 
        $user = user::create($data);
 
        if(!$user){
-            return redirect(route('login'));
+            return redirect(route('register'));
        }
         
         return redirect(route('admin.index'));
     }
-
 
     
     // LOGIN FUNCTION
@@ -59,12 +56,15 @@ class AuthController extends Controller
 
         if(Auth::attempt( $request->only('email','password'))){
             $request->session()->regenerate();
+            $user = Auth::user();
+            $user->is_online = true ;
+            $user->save();
             if(  Auth::user()->role== 'user'){
 
                 return redirect()->intended(route('client.index'));
             }
             if( Auth::user()->role== 'manager'){
-                return redirect()->intended(route('manager.index'));
+                return redirect(route('manager.index'));
             }
             if( Auth::user()->role== 'admin'){
                 return redirect()->intended(route('admin.index'));
@@ -75,7 +75,17 @@ class AuthController extends Controller
     }
 
     public function logout(Request $request){
-        Auth::guard('web')->logout();
+        // $user = Auth::user();
+        // $user->is_online = false ;
+        // $user->save();
+
+        $user = User::find($request->id);
+        $user->is_online = false ;
+        $user->save();
+        Auth::setUser($user);
+        auth()->logout();
+        // Auth::guard('web')->logout();
+        
         $request->session()->invalidate();
         return redirect('login');
     }
